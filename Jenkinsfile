@@ -3,24 +3,18 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn clean install'
+        sh 'g++ -o PES2UG20CS147-1 josmin.cpp'
         echo 'Build Stage Successful'
       }
     }
     stage('Test') {
       steps {
-        sh 'mvn test'
+        sh './PES2UG20CS147-1'
         echo 'Test Stage Successful'
-        post {
-          always {
-            junit 'target /surefire-reports/*.xml'
-          }
         }
-      }
     }
     stage('Deploy') {
       steps {
-        sh 'mvn deploy'
         echo 'Deployment Successful'
       }
     }
